@@ -2,10 +2,12 @@ package com.wzq.aac.ui.main
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.os.SystemClock
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Chronometer
 import com.wzq.aac.R
 
 class MainFragment : Fragment() {
@@ -25,6 +27,18 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         // TODO: Use the ViewModel
+        viewModel.time
+
+        val c = view?.findViewById<Chronometer>(R.id.chronometer)
+
+        if (viewModel.time == 0L) {
+            viewModel.time = SystemClock.elapsedRealtime()
+            c?.base = viewModel.time
+        } else {
+            c?.base = viewModel.time
+        }
+
+        c?.start()
     }
 
 }
