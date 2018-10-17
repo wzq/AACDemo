@@ -7,13 +7,15 @@ import android.arch.lifecycle.ViewModel
 class MainViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 
-    var time: Long = 0
+    private val _data = MutableLiveData<User>()
 
-    private val _data = MutableLiveData<String>()
-
-    val data: LiveData<String> get() = _data
+    val data: LiveData<User> get() = _data
 
     init {
-        _data.value = "asdsd"
+        _data.value = User(1, "wzq", 22)
+    }
+
+    fun change(){
+        _data.value = User(2, "qzw", 33)
     }
 }
