@@ -1,6 +1,6 @@
 package com.wzq.aac
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.wzq.aac.ui.main.MainFragment
 
