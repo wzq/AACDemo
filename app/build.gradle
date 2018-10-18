@@ -25,7 +25,7 @@ android {
 }
 
 dependencies {
-//    kapt 'androidx.room:room-compiler:2.0.0'
+    kapt 'androidx.room:room-compiler:2.0.0'
 
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
