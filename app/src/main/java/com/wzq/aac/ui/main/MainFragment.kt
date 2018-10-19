@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Chronometer
 import com.wzq.aac.R
 import com.wzq.aac.database.AppDatabase
+import com.wzq.aac.database.Order
 import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment() {
@@ -29,6 +30,7 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        add()
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         // TODO: Use the ViewModel
 
@@ -41,7 +43,25 @@ class MainFragment : Fragment() {
 
         button.setOnClickListener {
             viewModel.change()
+
+            db()
         }
+    }
+
+
+    fun db(){
+        AppDatabase.getInstance(context!!).getOrderDao().findOrders().value?.forEach {
+            println("${it.id}-${it.address}-${it.name}")
+        }
+    }
+
+    fun add(){
+
+        val orders = arrayListOf<Order>()
+        (0..9).forEach{
+            orders.add(Order(it, "o-$it", "address~~$it"))
+        }
+        AppDatabase.getInstance(context!!).getOrderDao().addOrders(orders)
     }
 
 }

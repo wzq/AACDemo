@@ -34,7 +34,7 @@ abstract class AppDatabase : RoomDatabase() {
                             println("database open")
                         }
                     })
-//                    .allowMainThreadQueries()
+                    .allowMainThreadQueries()
                     .build()
         }
     }

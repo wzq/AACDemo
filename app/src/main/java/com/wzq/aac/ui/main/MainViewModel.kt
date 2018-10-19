@@ -3,6 +3,7 @@ package com.wzq.aac.ui.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.wzq.aac.database.AppDatabase
 
 class MainViewModel : ViewModel() {
     // TODO: Implement the ViewModel
@@ -17,5 +18,9 @@ class MainViewModel : ViewModel() {
 
     fun change(){
         _data.value = User(2, "qzw", 33)
+    }
+
+
+    fun getOrders(){
     }
 }
