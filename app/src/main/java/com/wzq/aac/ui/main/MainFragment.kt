@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.wzq.aac.database.AppDatabase
-import com.wzq.aac.databinding.FragmentMainBinding
+import com.wzq.aac.database.OrderRepository
 
 class MainFragment : Fragment() {
 
@@ -18,25 +18,23 @@ class MainFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
 
-    private val _db: AppDatabase by lazy { AppDatabase.getInstance(context!!) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-        val binding = FragmentMainBinding.inflate(inflater, container, false)
-        return binding.root
+//        val binding = FragmentMainBinding.inflate(inflater, container, false)
+//        return binding.root
+        return View(context)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+        val factory = OrderViewModelFactory(OrderRepository.getInstance(AppDatabase.getInstance(context!!).getOrderDao()))
+        viewModel = ViewModelProviders.of(this, factory).get(MainViewModel::class.java)
 
-        viewModel.getOrders(context!!)
-        viewModel.data.observe(this, Observer {
+        viewModel.getOrders().observe(viewLifecycleOwner, Observer {
             showMsg("${it.size}")
         })
-
 
     }
 
