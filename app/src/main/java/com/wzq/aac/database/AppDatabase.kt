@@ -7,6 +7,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.wzq.aac.ThreadUtils
+import java.util.concurrent.Executors
+import java.util.concurrent.ThreadPoolExecutor
 
 @Database(entities = [Order::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
@@ -26,7 +29,12 @@ abstract class AppDatabase : RoomDatabase() {
                     .addCallback(object : RoomDatabase.Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             super.onCreate(db)
-                            println("database create")
+                            ThreadUtils.getInitIO().execute {
+                                Thread.sleep(3000)
+                                getInstance(context).getOrderDao().addOrders(MutableList(10) { index ->
+                                        Order(index, "o-$index", "address~~$index")
+                                    })
+                            }
                         }
 
                         override fun onOpen(db: SupportSQLiteDatabase) {

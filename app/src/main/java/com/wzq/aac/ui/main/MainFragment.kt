@@ -1,18 +1,14 @@
 package com.wzq.aac.ui.main
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.os.SystemClock
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Chronometer
-import com.wzq.aac.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.wzq.aac.database.AppDatabase
-import com.wzq.aac.database.Order
-import kotlinx.android.synthetic.main.main_fragment.*
+import com.wzq.aac.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
 
@@ -22,46 +18,30 @@ class MainFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
 
+    private val _db: AppDatabase by lazy { AppDatabase.getInstance(context!!) }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        val binding = FragmentMainBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        add()
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         // TODO: Use the ViewModel
 
-
+        viewModel.getOrders(context!!)
         viewModel.data.observe(this, Observer {
-            if (it!= null){
-                message.text = it.name
-            }
+            showMsg("${it.size}")
         })
 
-        button.setOnClickListener {
-            viewModel.change()
 
-            db()
-        }
     }
 
-
-    fun db(){
-        AppDatabase.getInstance(context!!).getOrderDao().findOrders().value?.forEach {
-            println("${it.id}-${it.address}-${it.name}")
-        }
-    }
-
-    fun add(){
-
-        val orders = arrayListOf<Order>()
-        (0..9).forEach{
-            orders.add(Order(it, "o-$it", "address~~$it"))
-        }
-        AppDatabase.getInstance(context!!).getOrderDao().addOrders(orders)
+    fun showMsg(msg: String) {
+        println("$msg---record")
     }
 
 }

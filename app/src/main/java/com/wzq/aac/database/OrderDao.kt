@@ -9,8 +9,8 @@ import androidx.room.Query
 @Dao
 interface OrderDao {
 
-    @Query("select * from orders")
-    fun findOrders(): LiveData<List<Order>>
+    @Query("SELECT * FROM orders")
+    fun findOrders(): List<Order>
 
     @Query("select * from orders where id = :id")
     fun findOrder(id: Int): LiveData<Order>
