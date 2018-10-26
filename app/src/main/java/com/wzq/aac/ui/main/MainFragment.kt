@@ -33,6 +33,7 @@ class MainFragment : Fragment() {
         viewModel = ViewModelProviders.of(this, factory).get(MainViewModel::class.java)
 
         viewModel.getOrders().observe(viewLifecycleOwner, Observer {
+            if (it!=null)
             showMsg("${it.size}")
         })
 
