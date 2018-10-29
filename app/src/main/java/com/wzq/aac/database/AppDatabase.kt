@@ -5,7 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.wzq.aac.runInIOThread
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import com.wzq.aac.work.InitDataWorker
 
 @Database(entities = [Order::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
@@ -25,19 +27,10 @@ abstract class AppDatabase : RoomDatabase() {
                     .addCallback(object : RoomDatabase.Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             super.onCreate(db)
-                           runInIOThread {
-                                getInstance(context).getOrderDao().addOrders(MutableList(10) { index ->
-                                        Order(index, "o-$index", "address~~$index")
-                                    })
-                            }
-                        }
-
-                        override fun onOpen(db: SupportSQLiteDatabase) {
-                            super.onOpen(db)
-                            println("database open")
+                            val request = OneTimeWorkRequestBuilder<InitDataWorker>().build()
+                            WorkManager.getInstance().enqueue(request)
                         }
                     })
-                    .allowMainThreadQueries()
                     .build()
         }
     }

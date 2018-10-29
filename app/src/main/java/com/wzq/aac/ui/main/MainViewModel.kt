@@ -5,17 +5,23 @@ import androidx.lifecycle.ViewModel
 import com.wzq.aac.database.Order
 import com.wzq.aac.database.OrderRepository
 
-class MainViewModel internal constructor(repository: OrderRepository): ViewModel() {
+class MainViewModel internal constructor(val repository: OrderRepository): ViewModel() {
     // TODO: Implement the ViewModel
 
-    private val orders = MediatorLiveData<List<Order>>().apply { value = null }
+    val orders = MediatorLiveData<List<Order>>()
 
     init {
-
-        val listResult = repository.getOrders()
-
-        orders.addSource(listResult, orders::setValue)
+        orders.addSource(repository.getOrders(), orders::setValue)
     }
 
-    fun getOrders() = orders
+
+    fun add(){
+
+        val t = MutableList(5) { it ->
+            val index = it + 20
+            Order(index, "o-$index", "address~~$index")
+        }
+        repository.addOrder(t)
+    }
+
 }

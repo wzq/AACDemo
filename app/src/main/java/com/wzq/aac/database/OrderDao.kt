@@ -10,9 +10,9 @@ import androidx.room.Query
 interface OrderDao {
 
     @Query("SELECT * FROM orders")
-    fun findOrders(): LiveData<List<Order>>
+     fun findOrders(): LiveData<List<Order>>
 
-    @Query("select * from orders where id = :id")
+    @Query("SELECT * FROM orders WHERE id = :id")
     fun findOrder(id: Int): LiveData<Order>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
