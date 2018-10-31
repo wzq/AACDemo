@@ -31,6 +31,7 @@ abstract class AppDatabase : RoomDatabase() {
                             WorkManager.getInstance().enqueue(request)
                         }
                     })
+                    .allowMainThreadQueries()
                     .build()
         }
     }

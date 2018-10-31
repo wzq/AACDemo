@@ -1,16 +1,17 @@
 package com.wzq.aac.ui.main
 
 import android.os.Bundle
-import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.wzq.aac.database.AppDatabase
-import com.wzq.aac.database.OrderRepository
-import com.wzq.aac.databinding.FragmentMainBinding
+import androidx.recyclerview.widget.RecyclerView
+import com.wzq.aac.R
+import com.wzq.aac.utils.getFactory
+import com.wzq.aac.model.News
 
 class MainFragment : Fragment() {
 
@@ -20,32 +21,39 @@ class MainFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
 
+    private val listData = arrayListOf<News>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-        val binding = FragmentMainBinding.inflate(inflater, container, false)
+        val root = inflater.inflate(R.layout.fragment_main, container, false)
+        val listView = root.findViewById<RecyclerView>(R.id.list_view)
+        val loading = root.findViewById<View>(R.id.loading)
+        listView.adapter = MainAdapter(listData)
 
-
-        val factory = OrderViewModelFactory(OrderRepository.getInstance(AppDatabase.getInstance(requireContext()).getOrderDao()))
-        viewModel = ViewModelProviders.of(this, factory).get(MainViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, getFactory(requireContext())).get(MainViewModel::class.java)
 
         viewModel.orders.observe(viewLifecycleOwner, Observer {
-            showMsg("${it.size}")
+            //test
+            showMsg("$it")
         })
-        return binding.root
+
+        viewModel.news.observe(viewLifecycleOwner, Observer {
+            if (it!=null && it.stories.isNotEmpty()){
+                loading.visibility = View.GONE
+                listData.clear()
+                listData.addAll(it.stories)
+                listView.adapter?.notifyDataSetChanged()
+            } else {
+                loading.visibility = View.VISIBLE
+            }
+
+        })
+
+        return root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        Thread {
-            viewModel.add()
-            println("removed")
-        }.start()
-
-    }
-
-    fun showMsg(msg: String) {
-        println("$msg---record")
+    private fun showMsg(msg: String) {
+        Log.i("aac_log", msg)
     }
 
 }

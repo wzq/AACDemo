@@ -5,17 +5,18 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.wzq.aac.database.AppDatabase
 import com.wzq.aac.database.Order
+import com.wzq.aac.database.OrderRepository
 import java.lang.Exception
 
-class InitDataWorker(context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
+class InitDataWorker(val context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
 
     override fun doWork(): Result {
         return try {
-            val data = MutableList(10) { index ->
-                Order(index, "o-$index", "address~~$index")
+            val t = MutableList(5) { it ->
+                Order(it, "o-$it", "address~~$it")
             }
-            val od = AppDatabase.getInstance(applicationContext).getOrderDao()
-            od.addOrders(data)
+            OrderRepository.getInstance(AppDatabase.getInstance(context).getOrderDao()).addOrder(t)
+
             Result.SUCCESS
         }catch (ex: Exception) {
             Result.FAILURE
