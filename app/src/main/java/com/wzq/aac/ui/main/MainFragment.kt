@@ -42,7 +42,7 @@ class MainFragment : Fragment() {
                 loading.visibility = View.GONE
                 listData.clear()
                 listData.addAll(it.stories)
-                listView.adapter?.notifyDataSetChanged()
+                listView.adapter.notifyDataSetChanged()
             } else {
                 loading.visibility = View.VISIBLE
             }
