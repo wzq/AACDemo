@@ -1,6 +1,10 @@
 # AACDemo
 Android Architecture Components Demo
 
+## **11.06 note** ## 
+  
+* 引入`navigation`库，用于页面导航
+
 ## **10.31 note** ## 
   
 * 用 `livedata`+`viewmodel`+`repository` 的结构，结合retrofit实现了一个简单页面
