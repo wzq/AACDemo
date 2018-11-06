@@ -1,6 +1,9 @@
 package com.wzq.aac.api
 
 import android.util.Log
+import com.wzq.aac.model.DetailExtra
+import com.wzq.aac.model.DetailResult
+import com.wzq.aac.model.NewsDetail
 import com.wzq.aac.model.NewsResult
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
@@ -19,12 +22,18 @@ interface NewsApi {
     @GET("https://news-at.zhihu.com/api/4/news/before/{date}")
     fun oldNews(@Path("date") date: String): Call<NewsResult>
 
+    @GET("https://news-at.zhihu.com/api/4/story-extra/{id}")
+    fun stars(@Path("id") id: Int): Call<DetailExtra>
+
+    @GET("https://zhihu-daily.leanapp.cn/api/v1/contents/{id}")
+    fun newsDetail(@Path("id")id: Int): Call<DetailResult>
+
 
     companion object {
         private val BASE_URL = "https://news-at.zhihu.com/api/4/"
 
         fun  create(): NewsApi {
-            Log.i("aac", "api created")
+            Log.i("aac", "api zcreated")
 
             val logger = HttpLoggingInterceptor(
                     HttpLoggingInterceptor.Logger { Log.d("API", it) }

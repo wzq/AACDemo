@@ -9,9 +9,22 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.wzq.aac.ui.main.MainFragment"
-        android:label="MainFragment"
-        tools:layout="@layout/fragment_main" >
+        android:label="TestApp"
+        tools:layout="@layout/fragment_main">
 
+        <action
+            android:id="@+id/action_mainFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.wzq.aac.ui.main.DetailFragment"
+        android:label="DetailPage"
+        tools:layout="@layout/fragment_detail">
+
+        <argument
+            android:name="newsId"
+            app:argType="int" />
     </fragment>
 
 
