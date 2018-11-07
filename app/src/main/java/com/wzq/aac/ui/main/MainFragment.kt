@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -32,11 +33,6 @@ class MainFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this, getFactory(requireContext())).get(MainViewModel::class.java)
 
-        viewModel.orders.observe(viewLifecycleOwner, Observer {
-            //test
-            showMsg("$it")
-        })
-
         viewModel.news.observe(viewLifecycleOwner, Observer {
             if (it!=null && it.stories.isNotEmpty()){
                 loading.visibility = View.GONE
@@ -49,11 +45,12 @@ class MainFragment : Fragment() {
 
         })
 
-        return root
-    }
+        viewModel.dbNews.observe(viewLifecycleOwner, Observer {
+            Log.i("aac_log", "db news list size => ${it?.size}")
+            Toast.makeText(requireContext(), "db news list size => ${it?.size}", Toast.LENGTH_LONG).show()
+        })
 
-    private fun showMsg(msg: String) {
-        Log.i("aac_log", msg)
+        return root
     }
 
 }

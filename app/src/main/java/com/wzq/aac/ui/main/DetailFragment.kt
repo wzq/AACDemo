@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.wzq.aac.R
+import com.wzq.aac.utils.getDetailVM
 import com.wzq.aac.utils.getFactory
 
 class DetailFragment: Fragment() {
@@ -23,7 +24,7 @@ class DetailFragment: Fragment() {
 
         val args = arguments?.getInt("newsId") ?: 0
 
-        val viewModel = ViewModelProviders.of(this, getFactory(requireContext())).get(MainViewModel::class.java)
+        val viewModel = ViewModelProviders.of(this, getDetailVM(requireContext())).get(DetailViewModel::class.java)
 
         viewModel.getDetail(args).observe(viewLifecycleOwner, Observer {
             head.title  = it.contents.title
