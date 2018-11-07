@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.chip.Chip
 import com.wzq.aac.R
 import com.wzq.aac.model.News
 
@@ -23,6 +24,8 @@ class MainAdapter(val data: List<News>): RecyclerView.Adapter<MainAdapter.Holder
 
     override fun onBindViewHolder(holder: MainAdapter.Holder, position: Int) {
         val itemData = data[position]
+
+        holder.timeTag.visibility = if (position == 0) View.VISIBLE else View.GONE
         holder.itemView.tag = itemData.id
         holder.title.text = itemData.title
         if (itemData.images.isNotEmpty())
@@ -32,6 +35,7 @@ class MainAdapter(val data: List<News>): RecyclerView.Adapter<MainAdapter.Holder
     class Holder(root: View): RecyclerView.ViewHolder(root){
         val img = root.findViewById<ImageView>(R.id.main_img)
         val title = root.findViewById<TextView>(R.id.main_title)
+        val timeTag = root.findViewById<Chip>(R.id.time_tag)
 
         init {
             root.setOnClickListener {

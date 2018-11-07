@@ -1,7 +1,8 @@
 # AACDemo
 Android Architecture Components Demo
 
-***app***
+***navigation***
+![navigation](art/navigation.png)
 
 ***dependencies***
 ```groovy
@@ -35,6 +36,10 @@ Android Architecture Components Demo
 ```
 
 
+## **11.07 note** ## 
+  
+* 完善页面
+* 网络数据源来自ZHIHU
 
 ## **11.06 note** ## 
   
