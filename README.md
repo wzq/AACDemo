@@ -2,7 +2,14 @@
 Android Architecture Components Demo
 Android JetPack 组件使用样例
 
-***dependencies***
+#### 工作流程 ####
+<img src="art/final-architecture.png" width="500" hegiht="313" align=center />
+
+#### NAVIGATION ####
+<img src="art/navigation.png" width="500" hegiht="313" align=center />
+
+
+#### 相关依赖 ####
 ```groovy
     kapt 'androidx.room:room-compiler:2.0.0'
     kapt "com.github.bumptech.glide:compiler:4.8.0"
@@ -31,12 +38,7 @@ Android JetPack 组件使用样例
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
 ```
 
-------------------------------------------------------------
-![](art/final-architecture.png)
-![navigation](art/navigation.png)
-![pic](art/gif-maker.gif)
-------------------------------------------------------------
-
+#### 更新日志 ####
 
 ## **11.07 note** ## 
   
