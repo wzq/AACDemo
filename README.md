@@ -1,8 +1,6 @@
 # AACDemo
 Android Architecture Components Demo
-
-***navigation***
-![navigation](art/navigation.png)
+Android JetPack 组件使用样例
 
 ***dependencies***
 ```groovy
@@ -35,6 +33,9 @@ Android Architecture Components Demo
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
 ```
 
+![pic](art/gif-maker.gif)
+***navigation***
+![navigation](art/navigation.png)
 
 ## **11.07 note** ## 
   
@@ -55,3 +56,6 @@ Android Architecture Components Demo
   
 * 最新的构建库 已迁移到 `androidx` 包下，老项目可使用 Studio-> Refactor -> Migrate to AndroidX 功能迁移
 * 使用 [kapt](http://kotlinlang.org/docs/reference/kapt.html) 来支持 `Annotation Processor`
+
+
+
