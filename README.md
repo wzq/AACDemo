@@ -31,9 +31,12 @@ Android JetPack 组件使用样例
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
 ```
 
-![pic](art/gif-maker.gif)
-***navigation***
+------------------------------------------------------------
+![](art/final-architecture.png)
 ![navigation](art/navigation.png)
+![pic](art/gif-maker.gif)
+------------------------------------------------------------
+
 
 ## **11.07 note** ## 
   
