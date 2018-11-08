@@ -1,4 +1,4 @@
-package com.wzq.aac.database
+package com.wzq.aac.data.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

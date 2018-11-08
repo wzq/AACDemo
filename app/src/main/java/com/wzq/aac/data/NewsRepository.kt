@@ -1,8 +1,9 @@
-package com.wzq.aac.database
+package com.wzq.aac.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.wzq.aac.api.NewsApi
+import com.wzq.aac.data.api.NewsApi
+import com.wzq.aac.data.database.NewsDao
 import com.wzq.aac.model.DetailResult
 import com.wzq.aac.model.News
 import com.wzq.aac.model.NewsResult
@@ -54,7 +55,8 @@ class NewsRepository(private val api: NewsApi, private val newsDao: NewsDao) {
 
         fun getInstance(newsApi: NewsApi, dao: NewsDao) =
                 instance ?: synchronized(this) {
-                    instance ?: NewsRepository(newsApi, dao).also { instance = it }
+                    instance
+                            ?: NewsRepository(newsApi, dao).also { instance = it }
                 }
     }
 }

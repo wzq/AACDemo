@@ -1,9 +1,8 @@
-package com.wzq.aac.api
+package com.wzq.aac.data.api
 
 import android.util.Log
 import com.wzq.aac.model.DetailExtra
 import com.wzq.aac.model.DetailResult
-import com.wzq.aac.model.NewsDetail
 import com.wzq.aac.model.NewsResult
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient

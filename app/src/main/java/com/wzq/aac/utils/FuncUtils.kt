@@ -1,10 +1,9 @@
 package com.wzq.aac.utils
 
 import android.content.Context
-import com.wzq.aac.api.NewsApi
-import com.wzq.aac.database.AppDatabase
-import com.wzq.aac.database.NewsRepository
-import com.wzq.aac.ui.main.DetailViewModel
+import com.wzq.aac.data.api.NewsApi
+import com.wzq.aac.data.database.AppDatabase
+import com.wzq.aac.data.NewsRepository
 import com.wzq.aac.ui.main.DetailViewModelFactory
 import com.wzq.aac.ui.main.MainViewModelFactory
 import java.util.concurrent.Executors

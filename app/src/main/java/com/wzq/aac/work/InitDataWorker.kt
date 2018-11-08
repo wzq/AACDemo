@@ -3,7 +3,6 @@ package com.wzq.aac.work
 import android.content.Context
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.wzq.aac.database.AppDatabase
 import java.lang.Exception
 
 class InitDataWorker(val context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {

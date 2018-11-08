@@ -1,4 +1,4 @@
-package com.wzq.aac.database
+package com.wzq.aac.data.database
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

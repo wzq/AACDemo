@@ -1,4 +1,4 @@
-package com.wzq.aac.database
+package com.wzq.aac.data.database
 
 import android.content.Context
 import androidx.room.Database
