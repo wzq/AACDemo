@@ -12,6 +12,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+//数据仓库
 class NewsRepository(private val api: NewsApi, private val newsDao: NewsDao) {
 
     fun getLastNews(): LiveData<NewsResult> {
