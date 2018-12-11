@@ -18,21 +18,20 @@ interface NewsApi {
     @GET("news/latest")
     fun lastNews(): Call<NewsResult>
 
-    @GET("https://news-at.zhihu.com/api/4/news/before/{date}")
+    @GET("news/before/{date}")
     fun oldNews(@Path("date") date: String): Call<NewsResult>
 
-    @GET("https://news-at.zhihu.com/api/4/story-extra/{id}")
+    @GET("story-extra/{id}")
     fun stars(@Path("id") id: Int): Call<DetailExtra>
 
     @GET("https://zhihu-daily.leanapp.cn/api/v1/contents/{id}")
-    fun newsDetail(@Path("id")id: Int): Call<DetailResult>
-
+    fun newsDetail(@Path("id") id: Int): Call<DetailResult>
 
     companion object {
         private val BASE_URL = "https://news-at.zhihu.com/api/4/"
 
-        fun  create(): NewsApi {
-            Log.i("aac", "api zcreated")
+        fun create(): NewsApi {
+            Log.i("aac", "api created")
 
             val logger = HttpLoggingInterceptor(
                     HttpLoggingInterceptor.Logger { Log.d("API", it) }

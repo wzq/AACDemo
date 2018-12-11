@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.wzq.aac.R
 import com.wzq.aac.utils.getDetailVM
-import com.wzq.aac.utils.getFactory
 
 class DetailFragment: Fragment() {
 
