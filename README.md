@@ -14,7 +14,6 @@ Android JetPack 组件使用样例
 ***11.07 note***
   
 * 完善页面
-* 网络数据源来自ZHIHU
 
 ***11.06 note***
   

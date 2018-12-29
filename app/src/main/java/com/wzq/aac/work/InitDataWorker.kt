@@ -14,9 +14,9 @@ class InitDataWorker(val context: Context, workerParams: WorkerParameters) : Wor
 //            }
 //            OrderRepository.getInstance(AppDatabase.getInstance(context).getOrderDao()).addOrder(t)
             //init data
-            Result.SUCCESS
+            Result.success()
         }catch (ex: Exception) {
-            Result.FAILURE
+            Result.failure()
         }
     }
 }
