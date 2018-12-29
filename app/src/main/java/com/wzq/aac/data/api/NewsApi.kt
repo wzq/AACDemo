@@ -12,6 +12,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
+import timber.log.Timber
 
 interface NewsApi {
 
@@ -28,13 +29,13 @@ interface NewsApi {
     fun newsDetail(@Path("id") id: Int): Call<DetailResult>
 
     companion object {
-        private val BASE_URL = "https://news-at.zhihu.com/api/4/"
+        private const val BASE_URL = "https://news-at.zhihu.com/api/4/"
 
         fun create(): NewsApi {
-            Log.i("aac", "api created")
+            Timber.i("api created")
 
             val logger = HttpLoggingInterceptor(
-                    HttpLoggingInterceptor.Logger { Log.d("API", it) }
+                    HttpLoggingInterceptor.Logger { Timber.d( it) }
             )
             logger.level = HttpLoggingInterceptor.Level.BASIC
 
