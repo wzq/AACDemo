@@ -8,9 +8,9 @@ class PersistenceWorker(val context: Context, workerParams: WorkerParameters): W
     override fun doWork(): Result {
         return try {
             //todo
-            Result.SUCCESS
+            Result.success()
         }catch (ex: Exception) {
-            Result.FAILURE
+            Result.failure()
         }
     }
 }

@@ -2,4 +2,6 @@
     <string name="app_name">AACDemo</string>
 
     <string name="today_news">今日新闻</string>
+
+    <string name="paging_test">paging sample</string>
 </resources>

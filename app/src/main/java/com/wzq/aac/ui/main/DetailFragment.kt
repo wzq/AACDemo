@@ -7,6 +7,7 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.wzq.aac.R
@@ -18,7 +19,9 @@ class DetailFragment: Fragment() {
         val root = inflater.inflate(R.layout.fragment_detail, container, false)
 
         val web = root.findViewById<WebView>(R.id.detail_web)
-        val image = root.findViewById<ImageView>(R.id.detail_img)
+        val image = root.findViewById<ImageView>(R.id.detail_img).also {
+            it.setOnClickListener { findNavController().navigate(R.id.action_detailFragment_to_topicFragment) }
+        }
         val head = root.findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout)
 
         val args = arguments?.getInt("newsId") ?: 0
