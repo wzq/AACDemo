@@ -1,5 +1,6 @@
 package com.wzq.aac.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
 import com.wzq.aac.R
 import com.wzq.aac.model.News
+import com.wzq.aac.ui.binding.UserActivity
 
 class MainAdapter(val data: List<News>): RecyclerView.Adapter<MainAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainAdapter.Holder {
@@ -38,6 +40,7 @@ class MainAdapter(val data: List<News>): RecyclerView.Adapter<MainAdapter.Holder
         val timeTag = root.findViewById<Chip>(R.id.time_tag)
 
         init {
+            timeTag.setOnClickListener { root.context.startActivity(Intent(root.context, UserActivity::class.java)) }
             root.setOnClickListener {
                 it.findNavController().navigate(R.id.action_mainFragment_to_detailFragment, Bundle().apply {
                     this.putInt("newsId", it.tag as? Int ?:0)
