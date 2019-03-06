@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wzq.aac.R
 import com.wzq.aac.utils.getFactory
 import com.wzq.aac.model.News
+import timber.log.Timber
 
 class MainFragment : Fragment() {
 
@@ -46,8 +47,8 @@ class MainFragment : Fragment() {
         })
 
         viewModel.dbNews.observe(viewLifecycleOwner, Observer {
-            Log.i("aac_log", "db news list size => ${it?.size}")
-            Toast.makeText(requireContext(), "db news list size => ${it?.size}", Toast.LENGTH_LONG).show()
+            Timber.i("db news list size => ${it?.size}")
+            //Toast.makeText(requireContext(), "db news list size => ${it?.size}", Toast.LENGTH_LONG).show()
         })
 
         return root

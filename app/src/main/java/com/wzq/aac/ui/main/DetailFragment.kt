@@ -49,4 +49,9 @@ class DetailFragment: Fragment() {
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         inflater?.inflate(R.menu.menu_detail, menu)
     }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        findNavController().navigate(R.id.action_detailFragment_to_topicFragment)
+        return super.onOptionsItemSelected(item)
+    }
 }
